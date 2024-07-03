@@ -5,7 +5,13 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        heading: ["Nunito Sans", "sans-serif"],
+        sub: ["Mulish", "sans-serif"],
+      },
+    },
+    
   },
   plugins: [
     function ({ addUtilities }) {
