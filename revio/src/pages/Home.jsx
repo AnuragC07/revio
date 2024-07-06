@@ -5,10 +5,11 @@ import hero3 from "../assets/hand-drawn-business-communication-illustration 1.sv
 import hero4 from "../assets/hand-drawn-data-concept-illustrated 1.svg";
 
 import logo from "../assets/revio.svg";
-import DownBtn from "./DownBtn";
-import GetStartedBtn from "./GetStartedBtn";
-import ItemCard from "./ItemCard";
-import BrowseMoreBtn from "./BrowseMoreBtn";
+import DownBtn from "../components/DownBtn";
+import GetStartedBtn from "../components/GetStartedBtn";
+import ItemCard from "../components/ItemCard";
+import BrowseMoreBtn from "../components/BrowseMoreBtn";
+import Navbar from '../components/Navbar';
 
 import AOS from 'aos'
 import 'aos/dist/aos.css';
@@ -22,6 +23,7 @@ const Hero = () => {
 
   return (
     <>
+    <Navbar />
       <div className="relative flex flex-col items-center justify-center mt-20">
         <img src={hero1} alt="" className="absolute top-0 left-2 z-20" />
         <img
