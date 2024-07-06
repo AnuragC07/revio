@@ -27,6 +27,7 @@ const Productpage = () => {
                         {/* <p className='font-sub font-bold text-slate-700'>PDF</p> */} 
                         {/* no pdf if its physical copy */}
                     </div>
+                    <p className='text-blue-700 font-sub font-semibold mt-4 cursor-pointer'>by Adrian Miller</p>
                     <p className='font-sub text-lg font-medium text-stone-500 mt-3'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolore esse ab hic sequi quos cupiditate distinctio ut voluptas? Numquam, perspiciatis!</p>
                     <div className='flex justify-between'>
                      <h2 className='font-sub text-xl font-bold text-stone-600 mt-20'>Physical Copy</h2>
@@ -41,7 +42,7 @@ const Productpage = () => {
             </div>
         </div>
         <h1 className='ml-40 font-heading font-bold text-2xl mt-32'>Related resources</h1>
-        <div className='w-10/12 bg-stone-100 rounded-3xl mt-5 m-auto p-4'>
+        <div className='w-10/12 bg-stone-100 rounded-3xl mt-5 m-auto p-4 mb-4'>
             <div className='flex flex-row gap-7'>
                 <ItemCard />
                 <ItemCard />
