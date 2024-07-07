@@ -3,7 +3,7 @@ import userimg from "../assets/OIP.jpeg";
 import EditIcon from "@mui/icons-material/Edit";
 import ItemCard from "../components/ItemCard";
 
-const User = () => {
+const PublicUser = () => {
   return (
     <>
     {/* THIS IS PAGE FOR A LOGGED IN USER. ME  */}
@@ -46,4 +46,4 @@ const User = () => {
   );
 };
 
-export default User;
+export default PublicUser;
