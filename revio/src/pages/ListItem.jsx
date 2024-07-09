@@ -52,7 +52,7 @@ const ListItem = () => {
               placeholder="Give a Title"
             />
             <div className="flex flex-row gap-5 mt-2">
-              <select className="cursor-pointer outline-none text-xs font-semibold rounded-xl px-3 py-1 bg-blue-50">
+              <select className="cursor-pointer outline-none text-xs font-semibold rounded-xl px-3 py-1 bg-stone-200">
                 <option value="Book" className="cursor-pointer outline-none text-xs font-semibold rounded-xl px-3 py-1">
                   Book
                 </option>
