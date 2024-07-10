@@ -2,11 +2,11 @@ import Navbar from "../components/Navbar";
 import userimg from "../assets/OIP.jpeg";
 import EditIcon from "@mui/icons-material/Edit";
 import ItemCard from "../components/ItemCard";
-
+import { Link } from "react-router-dom";
 const User = () => {
   return (
     <>
-    {/* THIS IS PAGE FOR A LOGGED IN USER. ME  */}
+      {/* THIS IS PAGE FOR A LOGGED IN USER. ME  */}
       <Navbar />
       <div className="w-full bg-stone-50 flex justify-around mt-20 p-10">
         <div className="flex gap-10">
@@ -24,9 +24,11 @@ const User = () => {
             </p>
           </div>
         </div>
-        <p>
-          <EditIcon className="text-stone-400 border rounded-full p-1 bg-white shadow cursor-pointer" />
-        </p>
+        <Link to="/me/edit">
+          <p>
+            <EditIcon className="text-stone-400 border rounded-full p-1 bg-white shadow cursor-pointer" />
+          </p>
+        </Link>
       </div>
       <div>
         <h1 className="ml-40 font-heading font-bold text-2xl mt-32">
