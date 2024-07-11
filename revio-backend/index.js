@@ -6,6 +6,23 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 const app = express();
+const cors = require("cors");
+
+const productRoutes = require("./routes/productRoutes");
+// const userRoute = require("./routes/userRoute");
+
+app.use(cors());
+
+app.use(express.json())
+app.use('/', productRoutes);
+// app.use('/', userRoute);
+app.use(
+    cors({
+        origin: '*',
+        methods: ['GET', 'POST', 'PUT', 'DELETE'],
+        allowedHeaders: ['Content-Type'],
+    })
+);
 
 app.get("/", (req, res) => {
     return res.send("Hello from Revio backend !!!");
