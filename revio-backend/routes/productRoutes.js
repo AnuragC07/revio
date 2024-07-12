@@ -9,7 +9,8 @@ router.use(cors());
 router.use(express.json())
 
 
-//apis
+//all backend apis
+
 
 //api to list a new product
 router.post('/', async (req, res) => {

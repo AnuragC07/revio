@@ -6,7 +6,7 @@ const Market = () => {
     <>
         <Navbar />
         <div className='m-5 mt-32'>
-          <h1 className='font-heading text-4xl font-bold mb-8 ml-64'>Marketplace</h1>
+          <h1 className='font-heading text-4xl font-bold mb-9 ml-64'>Marketplace</h1>
           <div className='flex flex-row justify-around gap-10'>
             <div id='filters' className='w-36'>
               <h2 className='font-sub text-2xl font-semibold'>Filters</h2>
