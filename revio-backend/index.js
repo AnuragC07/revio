@@ -9,13 +9,13 @@ const app = express();
 const cors = require("cors");
 
 const productRoutes = require("./routes/productRoutes");
-// const userRoute = require("./routes/userRoute");
+const userRoute = require("./routes/userRoute");
 
 app.use(cors());
 
 app.use(express.json())
 app.use('/', productRoutes);
-// app.use('/', userRoute);
+app.use('/', userRoute);
 app.use(
     cors({
         origin: '*',
