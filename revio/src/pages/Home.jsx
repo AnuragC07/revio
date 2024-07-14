@@ -14,6 +14,7 @@ import Navbar from '../components/Navbar';
 import AOS from 'aos'
 import 'aos/dist/aos.css';
 import { useEffect } from "react";
+import './styles.css';
 
 const Hero = () => {
 
@@ -63,9 +64,9 @@ const Hero = () => {
         <img src={hero3} alt="" className="m-10" />
       </div>
 
-      <div className="flex flex-col justify-center items-center"> 
-        <div className="bg-stone-100 w-full  mt-32 p-8 flex flex-col justify-center items-center gap-10" >
-          <h1 className="text-5xl font-bold m-16 font-heading" >Marketplace</h1>
+      <div className="flex flex-col justify-center items-center scrollbar"> 
+        <div className="bg-stone-50 w-full  mt-32 p-8 flex flex-col justify-center items-center gap-10" >
+          <h1 className="text-5xl font-heading m-16 font-light" >Marketplace</h1>
           <div className="flex flex-row gap-10 overflow-x-auto overflow-y-hidden max-w-7xl mx-32 mb-24">
             <ItemCard />
             <ItemCard />
@@ -79,12 +80,12 @@ const Hero = () => {
             <ItemCard />
           </div>
         </div>
-        <div className="flex flex-row justify-center items-center bg-stone-100 w-full">
+        <div className="flex flex-row justify-center items-center bg-stone-50 w-full">
           <BrowseMoreBtn />
         </div>
       </div>
 
-      <div className="bg-stone-100 w-full py-20" >
+      <div className="bg-stone-50 w-full py-20" >
         <div className="flex flex-row justify-around p-8 rounded-3xl w-4/5 m-auto mt-16 bg-white" data-aos="zoom-out" data-aos-duration="700">
           <img src={hero4} alt="" className="m-10" />
           <div className="flex flex-col justify-between">
