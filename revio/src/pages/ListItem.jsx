@@ -1,7 +1,5 @@
 import Navbar from "../components/Navbar";
 
-// import Buybutton from "../components/Buybutton";
-// import ItemCard from "../components/ItemCard";
 import ListItemBtn from "../components/ListItemBtn";
 import AddIcon from "@mui/icons-material/Add";
 
