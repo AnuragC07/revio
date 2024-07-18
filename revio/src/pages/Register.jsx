@@ -1,34 +1,34 @@
-// import { useState } from "react";
+import { useState } from "react";
 import logo from "../assets/revio.svg";
-import { Link } from "react-router-dom";
-// import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Register = () => {
-//   const navigate = useNavigate();
-//   const [formData, setFormData] = useState({
-//     username: "",
-//     email: "",
-//     password: "",
-//   });
+  const navigate = useNavigate();
+  const [formData, setFormData] = useState({
+    username: "",
+    email: "",
+    password: "",
+  });
 
-//   const handleChange = (e) => {
-//     const { name, value } = e.target;
-//     setFormData({ ...formData, [name]: value });
-//   };
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
 
-//   const handleSubmit = async (e) => {
-//     e.preventDefault();
-//     try {
-//       const response = await axios.post(
-//         "https://beetle-backend.onrender.com/signup",
-//         formData
-//       );
-//       // console.log(response.data);
-//       navigate("/signin");
-//     } catch (error) {
-//       console.error("Signup Error:", error);
-//     }
-//   };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post(
+        "http://localhost:8000/signup",
+        formData
+      );
+      console.log(response.data);
+      navigate("/");
+    } catch (error) {
+      console.error("Signup Error:", error);
+    }
+  };
 
   return (
     <div>
@@ -45,7 +45,7 @@ const Register = () => {
 
         <form
           className="w-3/4 border border-zinc-100 bg-white rounded-xl shadow-lg lg:w-1/4 m-5 mt-10 flex flex-col gap-1 lg:gap-3 p-8 lg:p-10 pl-11"
-        //   onSubmit={handleSubmit}
+          onSubmit={handleSubmit}
         >
           <div className="flex flex-col ">
             <label className="text-base text-blue-600 font-normal">
@@ -57,7 +57,7 @@ const Register = () => {
               placeholder="Enter your username"
               required
               name="username"
-            //   onChange={handleChange}
+              onChange={handleChange}
             />
           </div>
           <div className="flex flex-col ">
@@ -70,7 +70,7 @@ const Register = () => {
               placeholder="Enter your email address"
               required
               name="email"
-            //   onChange={handleChange}
+              onChange={handleChange}
             />
           </div>
           <div className="flex flex-col ">
@@ -83,7 +83,7 @@ const Register = () => {
               placeholder="Enter password"
               required
               name="password"
-            //   onChange={handleChange}
+              onChange={handleChange}
             />
           </div>
           <div>
