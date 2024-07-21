@@ -4,7 +4,8 @@ const cors = require("cors");
 const router = express.Router();
 const multer = require("multer");
 require('dotenv').config();
-const { jwtAuth, generateToken, extractUsernameFromToken } = require('../jwt');
+const { jwtAuth, extractUsernameFromToken } = require('../jwt');
+
 router.use(cors());
 router.use(express.json())
 
@@ -23,7 +24,7 @@ router.post('/', jwtAuth, extractUsernameFromToken, async (req, res) => {
         const newProduct = {
             title: req.body.title,
             category: req.body.category,
-            seller: req.body.username,
+            seller: req.username,
             sellerID: req.user.id,
             description: req.body.description,
             productType: req.body.productType,
