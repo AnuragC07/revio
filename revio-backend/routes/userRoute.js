@@ -3,7 +3,8 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcrypt");
 require('dotenv').config();
-
+const jwt = require('jsonwebtoken');
+const { generateToken } = require('../jwt');
 const app = express();
 
 app.use(express.json());
@@ -15,8 +16,15 @@ router.post('/signup', async(req, res) => {
         const { username, email, password } = req.body;
         const hash = await bcrypt.hash(password, 12);
         const user = await User.create({ username, email, password: hash });
-   
-        res.status(200).json({ user: { id: user.id, username: user.username, email: user.email, password: user.password }});
+        
+        const payload = {
+            id: user.id,
+            username: user.username
+        };
+
+        const token = generateToken(payload);
+
+        res.status(200).json({ user: { id: user.id, username: user.username, email: user.email, password: user.password }, token });
     }
     catch (err) {
         console.error(err);
@@ -38,7 +46,12 @@ router.post('/login', async(req, res) => {
         if(!passwordMatch) {
             return res.status(401).json({ error: "Password is not correct" });
         }
-        res.status(200).json("Login Successfull");
+        const payload = {
+            id: user.id,
+            username: user.username
+        };
+        const token = generateToken(payload);
+        res.status(200).json({ token });
     }
     catch(error){
         console.error(err);

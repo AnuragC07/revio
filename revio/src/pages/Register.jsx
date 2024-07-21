@@ -2,7 +2,7 @@ import { useState } from "react";
 import logo from "../assets/revio.svg";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-
+import toast from "react-hot-toast";
 const Register = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -23,12 +23,25 @@ const Register = () => {
         "http://localhost:8000/signup",
         formData
       );
+      if (response.data.token) {
+        // Store the token in local storage upon successful login
+        localStorage.setItem("jwtToken", response.data.token);
+        // Redirect to home page upon successful login
+        toast.success("Registration Successfull!");
+        navigate("/");
+      } else {
+        toast.error(response.data.error); // Display error message if login fails
+      }
       console.log(response.data);
-      navigate("/");
+      // navigate("/");
     } catch (error) {
       console.error("Signup Error:", error);
     }
-  };
+    finally {
+      toast.dismiss(); // Dismiss loading toast when login process ends
+    }
+    };
+
 
   return (
     <div>

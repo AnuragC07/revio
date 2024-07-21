@@ -1,65 +1,66 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-// import axios from "axios";
-// import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import toast from "react-hot-toast";
 import logo from "../assets/revio.svg";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
+  // Function to get JWT token from local storage
+  const getToken = () => {
+    return localStorage.getItem("jwtToken");
+  };
 
-//   // Function to get JWT token from local storage
-//   const getToken = () => {
-//     return localStorage.getItem("jwtToken");
-//   };
+  // Create an Axios instance with default configuration
+  const axiosInstance = axios.create({
+    baseURL: "http://localhost:8000", // Your server base URL
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
 
-//   // Create an Axios instance with default configuration
-//   const axiosInstance = axios.create({
-//     baseURL: "https://beetle-backend.onrender.com", // Your server base URL
-//     headers: {
-//       "Content-Type": "application/json",
-//     },
-//   });
+  // Add a request interceptor to attach JWT token to all requests
+  axiosInstance.interceptors.request.use(
+    (config) => {
+      const token = getToken();
+      if (token) {
+        config.headers["Authorization"] = `Bearer ${token}`;
+      }
+      return config;
+    },
+    (error) => {
+      return Promise.reject(error);
+    }
+  );
 
-//   // Add a request interceptor to attach JWT token to all requests
-//   axiosInstance.interceptors.request.use(
-//     (config) => {
-//       const token = getToken();
-//       if (token) {
-//         config.headers["Authorization"] = `Bearer ${token}`;
-//       }
-//       return config;
-//     },
-//     (error) => {
-//       return Promise.reject(error);
-//     }
-//   );
-
-//   const handleSubmit = async (e) => {
-//     e.preventDefault();
-//     toast.loading("Logging in..."); // Show loading toast
-//     try {
-//       const response = await axiosInstance.post("/signin", {
-//         email,
-//         password,
-//       });
-//       if (response.data.token) {
-//         // Store the token in local storage upon successful login
-//         localStorage.setItem("jwtToken", response.data.token);
-//         // Redirect to home page upon successful login
-//         toast.success("Login Successfull!");
-//         navigate("/home");
-//       } else {
-//         toast.error(response.data.error); // Display error message if login fails
-//       }
-//     } catch (error) {
-//       console.error("Login Error:", error);
-//       toast.error("Invalid Email or Password! Please try again.");
-//     } finally {
-//       toast.dismiss(); // Dismiss loading toast when login process ends
-//     }
-//   };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    toast.loading("Logging in..."); // Show loading toast
+    try {
+      const response = await axiosInstance.post("/login", {
+        email,
+        password,
+      });
+      if (response.data.token) {
+        // Store the token in local storage upon successful login
+        localStorage.setItem("jwtToken", response.data.token);
+        // Redirect to home page upon successful login
+        toast.success("Login Successfull!");
+        navigate("/");
+      } else {
+        toast.error(response.data.error); // Display error message if login fails
+      }
+    } catch (error) {
+      console.error("Login Error:", error);
+      toast.error("Invalid Email or Password! Please try again.");
+    } finally {
+      toast.dismiss(); // Dismiss loading toast when login process ends
+    }
+  };
 
   return (
     <div>
@@ -74,7 +75,7 @@ const Login = () => {
 
         <form
           className="w-3/4 border border-zinc-100 bg-white rounded-xl shadow-lg lg:w-1/4 m-8 mt-10 flex flex-col gap-5 p-10 pl-11"
-        //   onSubmit={handleSubmit}
+          onSubmit={handleSubmit}
         >
           <div className="flex flex-col ">
             <label className="text-base text-blue-600 font-normal">

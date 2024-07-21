@@ -4,7 +4,7 @@ const cors = require("cors");
 const router = express.Router();
 const multer = require("multer");
 require('dotenv').config();
-
+const { jwtAuth, generateToken, extractUsernameFromToken } = require('../jwt');
 router.use(cors());
 router.use(express.json())
 
@@ -13,7 +13,7 @@ router.use(express.json())
 
 
 //api to list a new product
-router.post('/', async (req, res) => {
+router.post('/', jwtAuth, extractUsernameFromToken, async (req, res) => {
     try {
         if(!req.body.title || !req.body.category || !req.body.description || !req.body.productType || !req.body.quantity || !req.body.price){
             return res.status(400).json({
@@ -23,6 +23,8 @@ router.post('/', async (req, res) => {
         const newProduct = {
             title: req.body.title,
             category: req.body.category,
+            seller: req.body.username,
+            sellerID: req.user.id,
             description: req.body.description,
             productType: req.body.productType,
             quantity: req.body.quantity,
@@ -63,7 +65,7 @@ router.get('/:id', async(req, res) => {
 });
 
 //api to delete a specific product
-router.delete('/:id', async(req, res) => {
+router.delete('/:id', jwtAuth, async(req, res) => {
     try {
         const { id } = req.params;
         const product = await Product.findByIdAndDelete(id);
