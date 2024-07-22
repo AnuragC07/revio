@@ -9,7 +9,7 @@ import ListItem from "./pages/ListItem";
 import MyinfoEdit from "./pages/MyinfoEdit";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-
+import Cart from "./pages/Cart";
 
 const App = () => {
   return (
@@ -20,6 +20,7 @@ const App = () => {
       <Route path="/signup" element={<Register />} />
       <Route path="/marketplace" element={<Market />} />
       <Route path="/product" element={<Productpage />} />
+      <Route path="/bag" element={<Cart />} />
       <Route path="/me" element={<User />} />
       <Route path="/user" element={<PublicUser />} />
       <Route path="/listproduct" element={<ListItem />} />
