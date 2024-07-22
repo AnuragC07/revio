@@ -21,7 +21,11 @@ const Hero = () => {
   useEffect(() => {
     AOS.init({ duration: 2000});
   }, []);
-
+  const handleExploreButtonClick = () => {
+    // Smooth scroll to the "Latest Articles" section
+    const latestArticlesSection = document.getElementById("hero2");
+    latestArticlesSection.scrollIntoView({ behavior: "smooth" });
+  };
   return (
     <>
     <Navbar />
@@ -40,14 +44,14 @@ const Hero = () => {
             Buy, sell, or donate educational resources and make the most out of
             your academic connections.
           </p>
-          <div className="mt-36 w-fit">
+          <div className="mt-36 w-fit" onClick={handleExploreButtonClick}>
             <DownBtn />
           </div>
         </div>
         <img src={hero2} alt="" className="absolute right-2 bottom-0 z-20 " />
       </div>
 
-      <div className="flex flex-row justify-around p-8 rounded-3xl w-4/5 m-auto mt-16 bg-stone-100" data-aos="zoom-in"   data-aos-duration="700">
+      <div className="flex flex-row justify-around p-8 rounded-3xl w-4/5 m-auto mt-16 bg-stone-100" data-aos="zoom-in"   data-aos-duration="700" id="hero2">
         <div className="flex flex-col justify-between">
           <div className="flex flex-col gap-3">
             <h1 className="gradient-text text-4xl font-semibold h-12 font-heading">

@@ -212,13 +212,11 @@ const ListItem = () => {
                 onChange={handleProductType}
               >
                 <option
-                  value="Book"
                   className="cursor-pointer outline-none font-semibold rounded-xl px-3 py-1"
                 >
                   Physical Copy
                 </option>
                 <option
-                  value="Notes"
                   className="cursor-pointer outline-none font-semibold rounded-xl px-3 py-1"
                 >
                   Digital Copy

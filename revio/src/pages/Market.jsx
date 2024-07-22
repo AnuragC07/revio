@@ -1,7 +1,33 @@
+import { useEffect, useState } from "react";
 import Navbar from '../components/Navbar';
 import ItemCard from '../components/ItemCard';
-
+import axios from "axios";
 const Market = () => {
+  const [products, setProducts] = useState([]);
+  useEffect(() => {
+    // Retrieve the token from local storage
+    // const token = localStorage.getItem("jwtToken");
+    // // console.log("Token:", token);
+    // // Set the Authorization header in axios request config
+    // const config = {
+    //   headers: {
+    //     Authorization: `Bearer ${token}`,
+    //   },
+    // };
+
+    // Send the GET request with the token included in the headers
+    axios
+      .get("http://localhost:8000/")
+      .then((response) => {
+        setProducts(response.data.data);
+        // console.log(response.data.data);
+      })
+      .catch((error) => {
+        console.log("Axios Error:", error);
+      });
+  }, []);
+
+
   return (
     <>
         <Navbar />
@@ -17,13 +43,21 @@ const Market = () => {
               </ul>
             </div>
             <div id='content' className=' rounded-3xl p-5 w-5/6 flex flex-row gap-8 flex-wrap bg-stone-100'>
-              <ItemCard />
-              <ItemCard />
-              <ItemCard />
-              <ItemCard />
-              <ItemCard />
-              <ItemCard />
-              <ItemCard />
+            {products
+            .slice()
+            .reverse()
+            .map((product, index) => (
+              <ItemCard
+                key={index}
+                image={`http://localhost:8000/images/${product.image}`}
+                category={product.category}
+                title={product.title}
+                description={product.description}
+                price={product.price}
+                product={product}
+                content={product.content}
+              />
+            ))}
             </div>
           </div>
         </div>
