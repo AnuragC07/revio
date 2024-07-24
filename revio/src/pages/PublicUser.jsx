@@ -6,7 +6,7 @@ import ItemCard from "../components/ItemCard";
 const PublicUser = () => {
   return (
     <>
-    {/* THIS IS PAGE FOR A LOGGED IN USER. ME  */}
+    {/* THIS IS PAGE FOR A GUEST USER */}
       <Navbar />
       <div className="w-full bg-stone-50 flex justify-around mt-20 p-10">
         <div className="flex gap-10">
