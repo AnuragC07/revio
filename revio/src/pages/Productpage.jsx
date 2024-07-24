@@ -1,10 +1,9 @@
 import { useState, useEffect } from "react";
 import Navbar from '../components/Navbar';
-import productimg from '../assets/download.jpeg';
-import Buybutton from '../components/Buybutton';
-import ItemCard from '../components/ItemCard';
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import LocalMallRoundedIcon from '@mui/icons-material/LocalMallRounded';
+
 
 const Productpage = () => {
     const [product, setProduct] = useState({});
@@ -21,9 +20,13 @@ const Productpage = () => {
           });
       }, [id]);
 
+    const addToBag = (product) => {
+        const currentBag = JSON.parse(localStorage.getItem('bag')) || [];
+        localStorage.setItem('bag', JSON.stringify([...currentBag, product]));
+    };
 
-  return (
-    <>
+    return (
+      <>
         <Navbar />
         <div className='w-10/12 bg-white rounded-3xl mt-32 m-auto flex flex-row justify-between p-3 mb-4'>
             <div>
@@ -33,7 +36,7 @@ const Productpage = () => {
                 <div className='flex flex-row gap-1'>
                     <img src={`http://localhost:8000/images/${product.previewImage1}`} alt="" className='h-44 w-44 m-3 rounded-md'/>
                     <img src={`http://localhost:8000/images/${product.previewImage2}`} alt="" className='h-44 w-44 m-3 rounded-md'/>
-                    <img src={`http://localhost:8000/images/${product.previewImage3}`}  alt="" className='h-44 w-44 m-3 rounded-md'/>
+                    <img src={`http://localhost:8000/images/${product.previewImage3}`} alt="" className='h-44 w-44 m-3 rounded-md'/>
                 </div>
             </div>
             <div className=' rounded-3xl bg-stone-50 w-1/2 p-8 flex flex-col justify-between'>
@@ -41,8 +44,7 @@ const Productpage = () => {
                     <h1 className='text-3xl font-heading font-bold'>{product.title}</h1>
                     <div className='flex flex-row gap-5 mt-2'>
                         <p className='bg-blue-100 w-fit px-3 py-1 font-semibold rounded-2xl text-xs'>{product.category}</p>
-                        {/* <p className='font-sub font-bold text-slate-700'>PDF</p> */} 
-                        {/* no pdf if its physical copy */}
+                        {/* <p className='font-sub font-bold text-slate-700'>PDF</p> */}
                     </div>
                     <p className='text-blue-700 font-sub font-semibold mt-4 cursor-pointer'>{"by"} {product.seller}</p>
                     <p className='font-sub text-lg font-medium text-stone-500 mt-3'>{product.description}</p>
@@ -51,18 +53,25 @@ const Productpage = () => {
                      <h2 className='font-sub text-3xl font-bold text-blue-700 mt-20'>{product.price}{"₹"}</h2>
                     </div>
                     <h3 className='font-sub text-base font-bold text-stone-600'>{product.quantity}{"Left"}</h3>
-                    
                 </div>
-                <div className='mb-20'>
-                    <Buybutton />
+                <div className='mb-10 flex flex-row justify-between mx-8'>
+                    <button onClick={() => addToBag(product)} className='rounded-2xl w-72 h-14 border border-stone-200  bg-white text-blue-700 px-4 py-2 flex justify-between mx-2 font-bold font-heading text-xl items-center shadow-md hover:shadow-lg'>
+                        <h2>Add to Bag</h2>
+                        <LocalMallRoundedIcon />
+                    </button>
+                    <Link to="/bag">
+                        <button  className='rounded-2xl w-40 h-14 font-semibold font-heading text-lg border border-stone-200  bg-blue-600 text-white shadow-md'>
+                            <h2>Go to Bag</h2>
+                        </button>
+                    </Link>
                 </div>
             </div>
         </div>
         <h1 className='ml-40 font-heading font-bold text-2xl mt-32'>Related resources</h1>
         <div className='w-10/12 bg-stone-100 rounded-3xl mt-5 m-auto p-4 mb-4'>
         </div>
-    </>
-  )
-}
+      </>
+    );
+};
 
-export default Productpage
+export default Productpage;
