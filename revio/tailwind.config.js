@@ -7,6 +7,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
+        hero: ["Playfair Display", "sans-serif"],
         heading: ["Nunito Sans", "sans-serif"],
         sub: ["Mulish", "sans-serif"],
       },

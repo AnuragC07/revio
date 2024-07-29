@@ -31,7 +31,7 @@ const Market = () => {
               <li className='rounded-xl bg-stone-100 w-full flex flex-col justify-center items-center h-10 text-blue-600 font-medium'>Donations</li>
             </ul>
           </div>
-          <div id='content' className='rounded-3xl p-5 w-5/6 flex flex-row gap-8 flex-wrap bg-stone-100'>
+          <div id='content' className='rounded-3xl p-5 w-fit flex flex-row gap-7 flex-wrap bg-stone-100'>
             {products.length > 0 ? (
               products.slice().reverse().map((product, index) => (
                 <ItemCard

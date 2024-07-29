@@ -18,7 +18,7 @@ const ItemCard = ({ image, category, title, description, price, product }) => {
           {category}
         </p>
         <h1 className="text-xl font-bold mt-2 font-heading">{title}</h1>
-        <p className="text-sm font-medium text-stone-400 max-h-20 overflow-hidden font-sub">
+        <p className="text-sm font-medium mt-2 text-stone-400 min-h-20 max-h-20 overflow-hidden font-sub">
           {description}
         </p>
         <div className="flex flex-row justify-between items-center">

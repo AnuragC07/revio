@@ -14,6 +14,7 @@ const productSchema = mongoose.Schema(
     previewImage1: { type: String },
     previewImage2: { type: String },
     previewImage3: { type: String },
+    // digitalCopy: { type: mongoose.Schema.Types.ObjectId, ref: 'DigitalCopy' }, // Reference to Digital Copy
   },
   { timestamps: true }
 );

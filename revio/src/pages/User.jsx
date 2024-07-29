@@ -160,7 +160,7 @@ const User = () => {
 </div>
       {showDeleteModal && (
         <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50">
-          <div className="bg-white p-8 max-w-md mx-auto rounded-2xl shadow-lg z-40">
+          <div className="bg-white p-8 max-w-md mx-auto rounded-2xl shadow-lg z-50">
             <h2 className="text-xl font-bold mb-4">Delete Product</h2>
             <p>Are you sure you want to delete this Product?</p>
             <div className="mt-4 flex justify-end">

@@ -10,7 +10,7 @@ import MyinfoEdit from "./pages/MyinfoEdit";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Cart from "./pages/Cart";
-
+import DigitalCopy from "./pages/DigitalCopy";
 const App = () => {
   return (
     <>
@@ -24,6 +24,7 @@ const App = () => {
       <Route path="/me" element={<User />} />
       <Route path="/user" element={<PublicUser />} />
       <Route path="/listproduct" element={<ListItem />} />
+      <Route path="/listdigitalcopy" element={<DigitalCopy />} />
       <Route path="/me/edit" element={<MyinfoEdit />} />
     </Routes>
     </>

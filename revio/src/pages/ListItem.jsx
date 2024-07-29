@@ -21,6 +21,7 @@ const ListItem = () => {
   const [previewFile1, setPreviewFile1] = useState(null);
   const [previewFile2, setPreviewFile2] = useState(null);
   const [previewFile3, setPreviewFile3] = useState(null);
+  const [digitalFile, setDigitalFile] = useState(null);
   const navigate = useNavigate();
 
   const handleCategory = (e) => {
@@ -46,6 +47,11 @@ const ListItem = () => {
       };
       reader.readAsDataURL(selectedFile);
     }
+  };
+
+  const handleDigitalFileChange = (e) => {
+    const selectedFile = e.target.files[0];
+    setDigitalFile(selectedFile);
   };
 
   const handleListItem = () => {
@@ -76,6 +82,28 @@ const ListItem = () => {
         toast.error("Error occurred! Please fill out all fields");
       });
   };
+
+  const handleUploadDigitalCopy = () => {
+    const formData = new FormData();
+    formData.append("digitalCopy", digitalFile);
+    formData.append("productId", "id-of-the-product");
+  
+    axios
+      .post("http://localhost:8000/", formData, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("jwtToken")}`,
+          "Content-Type": "multipart/form-data",
+        },
+      })
+      .then(() => {
+        toast.success("Digital copy uploaded successfully!");
+      })
+      .catch((error) => {
+        console.error('Digital Upload Error:', error);
+        toast.error("Error occurred during digital copy upload!");
+      });
+  };
+  
 
   return (
     <>
@@ -171,7 +199,7 @@ const ListItem = () => {
           <div>
             <input
               type="text"
-              className="border-b-2 border-stone-400 text-black font-heading font-bold text-3xl bg-stone-50 p-2 focus:border-b-2 focus:outline-none placeholder:font-normal"
+              className="border-b-2 border-stone-400 text-black font-heading font-bold text-3xl bg-stone-50 p-2 focus:border-b-2 focus:outline-none placeholder:font-normal w-full"
               placeholder="Give a Title"
               onChange={(e) => setTitle(e.target.value)}
             />
@@ -207,7 +235,8 @@ const ListItem = () => {
               onChange={handleDescription}
             ></textarea>
             <div className="flex justify-between mt-10">
-              <select
+              <h2>Physical Copy</h2>
+              {/* <select
                 className="cursor-pointer outline-none font-sub text-xl font-bold text-stone-600 p-2 rounded-lg px-3 bg-stone-50"
                 onChange={handleProductType}
               >
@@ -221,7 +250,7 @@ const ListItem = () => {
                 >
                   Digital Copy
                 </option>
-              </select>
+              </select> */}
               <input
                 type="text"
                 placeholder="Enter Price"
@@ -237,23 +266,28 @@ const ListItem = () => {
             />
           </div>
 
+          {/* {productType === "Digital Copy" && (
+            <div className="mt-5">
+              <input
+                type="file"
+                accept=".pdf, .epub"
+                onChange={handleDigitalFileChange}
+                className="w-full border border-black rounded-lg"
+              />
+              <button
+                onClick={handleUploadDigitalCopy}
+                className="mt-2 bg-blue-500 text-white py-2 px-4 rounded-lg"
+              >
+                Upload Digital Copy
+              </button>
+            </div>
+          )} */}
+
           <button className="mb-20 mt-10" onClick={handleListItem}>
             <ListItemBtn />
           </button>
         </div>
       </div>
-      {/* <h1 className="ml-40 font-heading font-bold text-2xl mt-32">
-        Related resources
-      </h1>
-      <div className="w-10/12 bg-stone-100 rounded-3xl mt-5 m-auto p-4 mb-4">
-        <div className="flex flex-row gap-7">
-          <ItemCard />
-          <ItemCard />
-          <ItemCard />
-          <ItemCard />
-          <ItemCard />
-        </div>
-      </div> */}
     </>
   );
 };
