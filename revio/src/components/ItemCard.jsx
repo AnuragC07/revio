@@ -14,7 +14,7 @@ const ItemCard = ({ image, category, title, description, price, product }) => {
         <div className="flex justify-center items-center">
           <img src={image} alt="" className="rounded-xl max-h-40 w-full" />
         </div>
-        <p className="bg-blue-100 w-fit px-3 py-1 font-semibold rounded-2xl mt-3 text-xs">
+        <p className="bg-slate-600 text-white w-fit px-3 py-1 font-semibold rounded-2xl mt-3 text-xs">
           {category}
         </p>
         <h1 className="text-xl font-bold mt-2 font-heading">{title}</h1>

@@ -3,6 +3,8 @@ import logo from "../assets/revio.svg";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
+import bg from "../assets/pexels-buro-millennial-636760-1438081.jpg";
+
 const Register = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -36,64 +38,58 @@ const Register = () => {
       // navigate("/");
     } catch (error) {
       console.error("Signup Error:", error);
-    }
-    finally {
+    } finally {
       toast.dismiss(); // Dismiss loading toast when login process ends
     }
-    };
-
+  };
 
   return (
+    
     <div>
-      <img src={logo} alt="beetle logo" className="m-5" />
-      <div id="body" className="flex flex-col justify-center items-center">
-        <div className="flex flex-col gap-5 mt-2 lg:mt-10 justify-center items-center">
-          <h1 className="text-4xl lg:text-5xl font-medium  text-blue-700 font-heading">
-            Glad to have you here!
-          </h1>
-          <h3 className="text-xl font-subtitle text-blue-400 font-bold font-sub">
-            Lets quickly set everything up
-          </h3>
-        </div>
-
+      <img src={logo} alt="beetle logo" className="m-5 absolute top-0" />
+      <div className="flex h-screen">
+      <div
+        id="body"
+        className="flex flex-col justify-center items-center w-1/2"
+      >
         <form
-          className="w-3/4 border border-zinc-100 bg-white rounded-xl shadow-lg lg:w-1/4 m-5 mt-10 flex flex-col gap-1 lg:gap-3 p-8 lg:p-10 pl-11"
+          className="w-3/4 bg-white rounded-xl lg:w-2/3 m-5 mt-10 flex flex-col gap-1 lg:gap-3 p-8 lg:p-10 pl-11"
           onSubmit={handleSubmit}
         >
           <div className="flex flex-col ">
-            <label className="text-base text-blue-600 font-normal">
+          <label className="text-base text-stone-600 font-medium">
               Username
             </label>
             <input
               type="text"
-              className="border border-slate-200 w-full bg-white rounded-md h-10 pl-3 font-normal mt-1 text-sm"
-              placeholder="Enter your username"
+              className=" w-full border border-stone-400 rounded-lg h-12 pl-3 font-semibold mt-1 text-base placeholder:text-base placeholder:font-normal"
+              placeholder="John Doe"
               required
               name="username"
               onChange={handleChange}
             />
           </div>
           <div className="flex flex-col ">
-            <label className="text-base text-blue-600 font-normal">
+          <label className="text-base text-stone-600 font-medium">
               Email
             </label>
             <input
               type="text"
-              className="border border-slate-200 w-full bg-white rounded-md h-10 pl-3 font-normal mt-1 text-sm"
-              placeholder="Enter your email address"
+              className=" w-full border border-stone-400 rounded-lg h-12 pl-3 font-semibold mt-1 text-base placeholder:text-base placeholder:font-normal"
+              placeholder="abc@gmail.com"
               required
               name="email"
               onChange={handleChange}
             />
           </div>
           <div className="flex flex-col ">
-            <label className="text-base text-blue-600 font-normal">
+            <label className="text-base text-stone-600 font-medium">
               Password
             </label>
             <input
               type="password"
-              className="border border-slate-200 w-full bg-white rounded-md h-10 pl-3 font-normal mt-1 text-sm"
-              placeholder="Enter password"
+             className=" w-full border border-stone-400 rounded-lg h-12 pl-3 font-semibold mt-1 text-base placeholder:text-base placeholder:font-normal"
+              placeholder="Password"
               required
               name="password"
               onChange={handleChange}
@@ -101,7 +97,7 @@ const Register = () => {
           </div>
           <div>
             <button
-              className="bg-blue-800 text-white h-10 text-sm p-1 w-full mt-6  lg:mt-10 rounded-md font-subtitle font-medium"
+              className="bg-blue-800 text-white h-10 text-sm p-1 w-full mt-6 lg:mt-10 rounded-md font-subtitle font-medium"
               type="submit"
             >
               Sign up
@@ -110,7 +106,7 @@ const Register = () => {
         </form>
 
         <div>
-          <h1 className="text-lg text-blue-600 font-subtitle font-semibold">
+          <h1 className="text-lg text-stone-600 font-subtitle font-semibold">
             already an user?{" "}
             <Link
               to="/login"
@@ -121,6 +117,15 @@ const Register = () => {
           </h1>
         </div>
       </div>
+
+      <div className="w-1/2">
+        <img
+          src={bg}
+          alt="Background Image"
+          className="w-full h-full object-cover"
+        />
+      </div>
+    </div>
     </div>
   );
 };

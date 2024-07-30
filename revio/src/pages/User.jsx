@@ -103,11 +103,11 @@ const User = () => {
     <>
       {/* THIS IS PAGE FOR A LOGGED IN USER. ME  */}
       <Navbar />
-      <div className="w-full bg-stone-50 flex justify-around mt-20 p-10">
-        <div className="flex gap-10">
-          <img src={userimg} alt="" className="h-32 w-32 rounded-2xl" />
+      <div className="w-full  flex justify-center mt-44 p-10">
+        <div className="flex ">
+          {/* <img src={userimg} alt="" className="h-32 w-32 rounded-2xl" /> */}
 
-          <div className="w-80 bg-white rounded-2xl p-5">
+          <div className="w-80rounded-2xl p-5">
             <h1 className="text-3xl font-heading font-bold mb-10">
               Adrian Miller
             </h1>
@@ -121,7 +121,7 @@ const User = () => {
         </div>
         <Link to="/me/edit">
           <p>
-            <EditIcon className="text-stone-400 border rounded-full p-1 bg-white shadow cursor-pointer" />
+            <EditIcon className="text-stone-400 border rounded-full p-1 mt-4 bg-white shadow cursor-pointer" />
           </p>
         </Link>
       </div>

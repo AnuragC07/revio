@@ -12,8 +12,8 @@ import hero8 from "../assets/Group 18.svg";
 import logo from "../assets/revio.svg";
 import DownBtn from "../components/DownBtn";
 import GetStartedBtn from "../components/GetStartedBtn";
-import ItemCard from "../components/ItemCard";
-import BrowseMoreBtn from "../components/BrowseMoreBtn";
+// import ItemCard from "../components/ItemCard";
+// import BrowseMoreBtn from "../components/BrowseMoreBtn";
 import Navbar from '../components/Navbar';
 
 import AOS from 'aos'

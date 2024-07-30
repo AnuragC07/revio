@@ -50,11 +50,12 @@ const Cart = () => {
               ))
             )}
           </div>
-          <div className='rounded-3xl bg-stone-100 w-1/4 p-8 flex flex-col justify-between h-96'>
+          <div className='rounded-3xl border border-stone-100 bg-stone-50 shadow-md w-1/4 p-6 flex flex-col justify-between h-96'>
             <div>
               <h1 className='text-3xl font-heading font-bold'>Order Summary</h1>
-              <h2 className='text-2xl font-heading font-bold text-blue-700 mt-5'>Sub Total</h2>
-              <h2 className='text-2xl font-heading font-bold text-blue-700'>{bag.reduce((total, product) => total + product.price, 0)} ₹</h2>
+              <hr className='mt-4 mb-6'/>
+              <h2 className='text-2xl font-heading font-bold text-stone-600 mt-5'>Sub Total</h2>
+              <h2 className='text-2xl font-heading font-bold text-blue-700 mt-10'>{bag.reduce((total, product) => total + product.price, 0)} ₹</h2>
             </div>
             <div>
               <CheckOutBtn />
