@@ -3,7 +3,7 @@ import Navbar from "../components/Navbar";
 import userimg from "../assets/OIP.jpeg";
 import EditIcon from "@mui/icons-material/Edit";
 import ItemCard from "../components/ItemCard";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import DeleteRoundedIcon from "@mui/icons-material/DeleteRounded";
 import toast from "react-hot-toast";
@@ -19,6 +19,7 @@ const User = () => {
   const [loading, setLoading] = useState(true);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const token = localStorage.getItem("jwtToken");
@@ -30,14 +31,8 @@ const User = () => {
 
     const fetchData = async () => {
       try {
-        const response = await axios.get(
-          "http://localhost:8000/",
-          config
-        );
-        // console.log("Response:", response); // Log the response
-        // Filter blogs based on author name or ID
+        const response = await axios.get("http://localhost:8000/", config);
         const filteredProducts = response.data.data.filter((product) => {
-          // Assuming decodedToken contains user information like username and ID
           return (
             product.seller === decodedToken.username ||
             product.sellerId === decodedToken.id
@@ -50,13 +45,10 @@ const User = () => {
       }
     };
 
-    // Fetch data when the component mounts
     fetchData();
-
-    // Decode the JWT token to get user information
     const decodedToken = decodeToken(token);
     setUsername(decodedToken.username);
-  }, []); // Empty dependency array ensures that useEffect runs only once when the component mounts
+  }, []);
 
   const handleDelete = async () => {
     try {
@@ -70,17 +62,14 @@ const User = () => {
         `http://localhost:8000/${selectedProduct._id}`,
         config
       );
-      // console.log(response.data.message);
       toast.success("Listed Product deleted successfully!");
-      // Refresh blogs after deletion
       const updatedProducts = products.filter(
         (product) => product._id !== selectedProduct._id
       );
       setProducts(updatedProducts);
       setShowDeleteModal(false);
     } catch (error) {
-      // console.log("Axios Error:", error);
-      toast.error("Blog deletion failed!");
+      toast.error("Product deletion failed!");
     }
   };
 
@@ -94,29 +83,30 @@ const User = () => {
     setShowDeleteModal(false);
   };
 
-
-
-
-
+  const handleLogout = () => {
+    localStorage.removeItem("jwtToken");
+    navigate("/login"); // Redirect to the login page or any other page
+  };
 
   return (
     <>
-      {/* THIS IS PAGE FOR A LOGGED IN USER. ME  */}
       <Navbar />
-      <div className="w-full  flex justify-center mt-44 p-10">
-        <div className="flex ">
-          {/* <img src={userimg} alt="" className="h-32 w-32 rounded-2xl" /> */}
-
+      <div className="w-full flex justify-center mt-44 p-10">
+        <div className="flex">
           <div className="w-80rounded-2xl p-5">
-            <h1 className="text-3xl font-heading font-bold mb-10">
-              {username}
-            </h1>
+            <h1 className="text-3xl font-heading font-bold mb-10">{username}</h1>
             <p className="text-lg text-stone-500 font-sub font-semibold">
               BTech CSE
             </p>
             <p className="text-lg text-stone-500 font-sub font-semibold">
               Harvard University
             </p>
+            <button
+              onClick={handleLogout}
+              className="border p-2 px-4 hover:shadow-md border-stone-300 rounded-xl text-red-600 mt-10"
+            >
+              Logout
+            </button>
           </div>
         </div>
         <Link to="/me/edit">
@@ -125,39 +115,45 @@ const User = () => {
           </p>
         </Link>
       </div>
+
       <div>
-  <h1 className="ml-40 font-heading font-bold text-2xl mt-32">Listed Resources</h1>
-  {loading ? (
-    <p>Loading...</p>
-  ) : products.length === 0 ? (
-    <p className="text-xl font-bold font-subtitle text-stone-700 m-8">No Products listed</p>
-  ) : (
-    <ul className="mt-16 flex gap-8 m-10">
-      {products.map((product, index) => (
-        <li key={index} className="mb-4 relative">
-          {product.seller === username && (
-            <button
-              onClick={() => openDeleteModal(product)}
-              className="text-blue-400 shadow-xl border-2 border-slate-800 w-10 h-10 bg-slate-800 rounded-full absolute top-3 right-3 z-10"
-            >
-              <DeleteRoundedIcon />
-            </button>
-          )}
-          <div className="relative">
-            <ItemCard
-              image={`http://localhost:8000/images/${product.image}`}
-              category={product.category}
-              title={product.title}
-              description={product.description}
-              price={product.price}
-              product={product}
-            />
-          </div>
-        </li>
-      ))}
-    </ul>
-  )}
-</div>
+        <h1 className="ml-40 font-heading font-bold text-2xl mt-32">
+          Listed Resources
+        </h1>
+        {loading ? (
+          <p>Loading...</p>
+        ) : products.length === 0 ? (
+          <p className="text-xl font-bold font-subtitle text-stone-700 m-8">
+            No Products listed
+          </p>
+        ) : (
+          <ul className="mt-16 flex gap-8 m-10">
+            {products.map((product, index) => (
+              <li key={index} className="mb-4 relative">
+                {product.seller === username && (
+                  <button
+                    onClick={() => openDeleteModal(product)}
+                    className="text-blue-400 shadow-xl border-2 border-slate-800 w-10 h-10 bg-slate-800 rounded-full absolute top-3 right-3 z-10"
+                  >
+                    <DeleteRoundedIcon />
+                  </button>
+                )}
+                <div className="relative">
+                  <ItemCard
+                    image={`http://localhost:8000/images/${product.image}`}
+                    category={product.category}
+                    title={product.title}
+                    description={product.description}
+                    price={product.price}
+                    product={product}
+                  />
+                </div>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+
       {showDeleteModal && (
         <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50">
           <div className="bg-white p-8 max-w-md mx-auto rounded-2xl shadow-lg z-50">
@@ -180,6 +176,7 @@ const User = () => {
           </div>
         </div>
       )}
+
       <div>
         <h1 className="ml-40 font-heading font-bold text-2xl mt-32">
           Your Purchases
