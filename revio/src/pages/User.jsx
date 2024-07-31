@@ -109,7 +109,7 @@ const User = () => {
 
           <div className="w-80rounded-2xl p-5">
             <h1 className="text-3xl font-heading font-bold mb-10">
-              Adrian Miller
+              {username}
             </h1>
             <p className="text-lg text-stone-500 font-sub font-semibold">
               BTech CSE
@@ -130,7 +130,7 @@ const User = () => {
   {loading ? (
     <p>Loading...</p>
   ) : products.length === 0 ? (
-    <p className="text-xl font-bold font-subtitle text-stone-700">No published blogs</p>
+    <p className="text-xl font-bold font-subtitle text-stone-700 m-8">No Products listed</p>
   ) : (
     <ul className="mt-16 flex gap-8 m-10">
       {products.map((product, index) => (

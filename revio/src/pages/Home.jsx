@@ -39,7 +39,7 @@ const Hero = () => {
         <img
           src={bg}
           alt=""
-          className="w-full bg-cover relative rounded-3xl"
+          className="w-full bg-cover relative"
         />
         <div>
 
@@ -61,7 +61,7 @@ const Hero = () => {
             <img src={hero1} data-aos="slide-up" data-aos-duration="700"/>
             <img src={hero2} className="absolute bottom-40 right-0" data-aos="zoom-in" data-aos-duration="700"/>
             <img src={hero3} className="absolute bottom-16 left-10" data-aos="zoom-in" data-aos-duration="700"/>
-            <img src={hero4} className="absolute top-16 right-20" data-aos="slide-left" data-aos-duration="700"/>
+            <img src={hero4} className="absolute top-16 right-20" data-aos="zoom-in" data-aos-duration="700"/>
             <img src={hero5} className="absolute top-36 left-32" data-aos="zoom-in" data-aos-duration="700"/>
           </div>
           

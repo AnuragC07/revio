@@ -5,6 +5,7 @@ import axios from "axios";
 
 const Market = () => {
   const [products, setProducts] = useState([]);
+  const [selectedFilter, setSelectedFilter] = useState(null);
 
   useEffect(() => {
     axios
@@ -17,6 +18,14 @@ const Market = () => {
       });
   }, []);
 
+  const handleFilterClick = (filter) => {
+    setSelectedFilter(filter);
+  };
+
+  const filteredProducts = selectedFilter
+    ? products.filter((product) => product.category === selectedFilter)
+    : products;
+
   return (
     <>
       <Navbar />
@@ -26,14 +35,24 @@ const Market = () => {
           <div id='filters' className='w-36'>
             <h2 className='font-sub text-2xl font-semibold'>Filters</h2>
             <ul className='mt-5 flex flex-col gap-4 cursor-pointer'>
-              <li className='rounded-xl bg-stone-100 w-full flex flex-col justify-center items-center h-10 text-blue-600 font-medium'>Books</li>
-              <li className='rounded-xl bg-stone-100 w-full flex flex-col justify-center items-center h-10 text-blue-600 font-medium'>Notes</li>
-              <li className='rounded-xl bg-stone-100 w-full flex flex-col justify-center items-center h-10 text-blue-600 font-medium'>Donations</li>
+              {["Book", "Notes", "Donation"].map((filter) => (
+                <li
+                  key={filter}
+                  onClick={() => handleFilterClick(filter)}
+                  className={`rounded-xl w-full flex flex-col justify-center items-center h-10 font-medium ${
+                    selectedFilter === filter
+                      ? 'bg-blue-600 text-white'
+                      : 'bg-stone-100 text-blue-600'
+                  }`}
+                >
+                  {filter}
+                </li>
+              ))}
             </ul>
           </div>
-          <div id='content' className='rounded-3xl p-5 w-fit flex flex-row gap-7 flex-wrap bg-stone-100'>
-            {products.length > 0 ? (
-              products.slice().reverse().map((product, index) => (
+          <div id='content' className='rounded-3xl p-5  w-full flex flex-row gap-7 flex-wrap bg-stone-100'>
+            {filteredProducts.length > 0 ? (
+              filteredProducts.slice().reverse().map((product, index) => (
                 <ItemCard
                   key={index}
                   image={`http://localhost:8000/images/${product.image}`}
@@ -45,7 +64,7 @@ const Market = () => {
                 />
               ))
             ) : (
-              <p>No products available</p>
+              <p className="font-heading text-stone-500 text-lg">Currently no products available. Try searching for other materials instead.</p>
             )}
           </div>
         </div>
