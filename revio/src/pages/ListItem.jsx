@@ -131,7 +131,6 @@ const ListItem = () => {
               </div>
             )}
           </label>
-
           <div className="flex flex-row gap-1">
             <label className=" h-44 w-44 m-3 rounded-md flex relative justify-center items-center cursor-pointer">
               <AddIcon className="text-stone-500" />
@@ -195,7 +194,7 @@ const ListItem = () => {
             </label>
           </div>
         </div>
-        <div className="rounded-3xl bg-stone-50 w-1/2 p-8 flex flex-col justify-between">
+        <div className="rounded-3xl border border-stone-100 bg-stone-50 shadow-md w-1/2 p-8 flex flex-col justify-between">
           <div>
             <input
               type="text"
@@ -205,7 +204,7 @@ const ListItem = () => {
             />
             <div className="flex flex-row gap-5 mt-2">
               <select
-                className="cursor-pointer outline-none text-xs font-semibold rounded-xl px-3 py-1 bg-stone-200"
+                className="cursor-pointer border mt-4 border-stone-400 outline-none text-xs font-semibold rounded-xl px-3 py-1 bg-stone-100"
                 value={category}
                 onChange={handleCategory}
               >

@@ -9,7 +9,7 @@ const ItemCard = ({ image, category, title, description, price, product }) => {
   }
 
   return (
-    <div className="w-fit shadow-md hover:shadow-lg max-w-64 min-w-56 p-3 rounded-2xl bg-white cursor-pointer">
+    <div className="w-fit max-h-96 shadow-md hover:shadow-lg max-w-64 min-w-56 p-3 rounded-2xl bg-white cursor-pointer">
       <Link to={`/product/${product._id}`}>
         <div className="flex justify-center items-center">
           <img src={image} alt="" className="rounded-xl max-h-40 w-full" />
@@ -17,8 +17,10 @@ const ItemCard = ({ image, category, title, description, price, product }) => {
         <p className="bg-slate-600 text-white w-fit px-3 py-1 font-semibold rounded-2xl mt-3 text-xs">
           {category}
         </p>
-        <h1 className="text-xl font-bold mt-2 font-heading">{title}</h1>
-        <p className="text-sm font-medium mt-2 text-stone-400 min-h-20 max-h-20 overflow-hidden font-sub">
+        <h1 className="text-lg font-bold mt-2 max-h-8 overflow-hidden  font-heading">
+          {title}
+          </h1>
+        <p className="text-sm font-medium mt-2 text-stone-400 min-h-14 max-h-14 overflow-hidden font-sub">
           {description}
         </p>
         <div className="flex flex-row justify-between items-center">

@@ -12,7 +12,7 @@ const Navbar = () => {
 
   return (
     <>
-      <div className="flex border fixed top-5 p-2 left-1/2 transform -translate-x-1/2 shadow-md rounded-full w-fit gap-6 justify-center items-center m-auto z-50 bg-white">
+      <div className="flex fixed top-5 p-2 left-1/2 transform -translate-x-1/2 shadow-md rounded-full w-fit gap-6 justify-center items-center m-auto z-50 bg-white backdrop-blur-saturate bg-white-translucent">
         <Link
           to="/"
           className="cursor-pointer flex justify-center items-center mr-10 ml-4"
