@@ -48,7 +48,7 @@ const Hero = () => {
           <h1 className="text-slate-800 text-7xl font-bold text-center h-24 font-hero">
             Empower Learning.
           </h1>
-          <p className="w-1/2 ml-20 font-semibold text-lg font-sub text-slate-500">
+          <p className="w- font-semibold text-lg font-sub text-slate-500">
             Buy, sell, or donate educational resources and make the most out of
             your academic connections.
           </p>
