@@ -10,12 +10,12 @@ const DigitalCopy = () => {
   const [title, setTitle] = useState("");
   const [coverImagePreview, setCoverImagePreview] = useState(null);
   const [price, setPrice] = useState("");
-  const [quantity, setQuantity] = useState("1");
+  // const [quantity, setQuantity] = useState("1");
   const [category, setCategory] = useState("Book");
   const [description, setDescription] = useState("");
-  const [productType, setProductType] = useState("Digital Copy");
+  // const [productType, setProductType] = useState("Digital Copy");
   const [coverFile, setCoverFile] = useState(null);
-  const [digitalFile, setDigitalFile] = useState(null);
+  const [digitalFile, setDigitalFile] = useState([]);
   const navigate = useNavigate();
 
   const handleCategory = (e) => {
@@ -48,10 +48,10 @@ const DigitalCopy = () => {
     const formData = new FormData();
     formData.append("title", title);
     formData.append("price", price);
-    formData.append("quantity", quantity);
+    // formData.append("quantity", quantity);
     formData.append("category", category);
     formData.append("description", description);
-    formData.append("productType", productType);
+    // formData.append("productType", productType);
     formData.append("coverFile", coverFile);
     formData.append("digitalFile", digitalFile);
 
@@ -67,7 +67,7 @@ const DigitalCopy = () => {
         navigate("/");
       })
       .catch((error) => {
-        console.log(error);
+        console.log("error occurred", error);
         toast.error("Error occurred! Please fill out all fields");
       });
   };
@@ -147,7 +147,6 @@ const DigitalCopy = () => {
               onChange={handleDescription}
             ></textarea>
             <div className="flex justify-between mt-10">
-              <h2>Digital Copy</h2>
               <input
                 type="text"
                 placeholder="Enter Price"
