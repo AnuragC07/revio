@@ -11,6 +11,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Cart from "./pages/Cart";
 import DigitalCopy from "./pages/DigitalCopy";
+import Checkout from "./pages/Checkout";
 const App = () => {
   return (
     <>
@@ -21,6 +22,7 @@ const App = () => {
       <Route path="/marketplace" element={<Market />} />
       <Route path="/product/:id" element={<Productpage />} />
       <Route path="/bag" element={<Cart />} />
+      <Route path="/checkout" element={<Checkout />} />
       <Route path="/me" element={<User />} />
       <Route path="/user" element={<PublicUser />} />
       <Route path="/listproduct" element={<ListItem />} />

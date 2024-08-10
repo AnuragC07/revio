@@ -66,15 +66,15 @@ const Productpage = () => {
             </div>
           )}
         </div>
-        <div className=" rounded-3xl border border-stone-100 bg-stone-50 shadow-md h-fit w-1/2 p-8 flex flex-col justify-between">
+        <div className=" rounded-3xl border border-stone-100 bg-stone-50 shadow-md h-fit w-1/2 ml-12 p-8 flex flex-col justify-between">
           <div>
             <h1 className="text-3xl font-heading font-bold">{item.title}</h1>
             <div className="flex flex-row gap-5 mt-2">
-              <p className="bg-slate-600 text-white w-fit px-3 py-1 font-semibold rounded-2xl text-xs">
+              <p className="bg-slate-400 text-white w-fit px-3 py-1 font-semibold rounded-2xl text-xs">
                 {item.category}
               </p>
               {item.file && (
-                <p className="font-sub font-bold text-slate-700">
+                <p className="bg-slate-400 text-white w-fit px-3 py-1 font-semibold rounded-2xl text-xs">
                   Digital Copy
                 </p>
               )}
@@ -83,7 +83,7 @@ const Productpage = () => {
               {"by"} {item.seller}
             </p>
             <hr className="mb-8 mt-2 text-white" />
-            <p className="font-sub text-lg font-medium text-stone-500 mt-3">
+            <p className="font-sub text-lg font-medium text-stone-700 mt-3">
               {item.description}
             </p>
             <div className="flex justify-between">
@@ -104,7 +104,7 @@ const Productpage = () => {
               </h3>
             )}
           </div>
-          <div className="mb-10 flex flex-row justify-between mx-8 mt-12">
+          <div className="mb-10 flex flex-row justify-between mt-12 gap-5">
             {item.file && item.price === 0 ? (
               <button
                 onClick={handleDownload}

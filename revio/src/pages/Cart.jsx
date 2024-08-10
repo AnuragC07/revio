@@ -23,13 +23,13 @@ const Cart = () => {
       <Navbar />
       <div className='m-5 mt-32'>
         <h1 className='font-heading text-4xl font-bold mb-9 ml-20'>Your Bag</h1>
-        <div className='flex flex-row justify-around gap-10'>
-          <div className='flex flex-col gap-4 w-3/5 p-4'>
+        <div className='flex flex-row justify-around gap-10 border rounded-3xl bg-stone-50'>
+          <div className='flex flex-col  items-start gap-4 w-3/5 p-4'>
             {bag.length === 0 ? (
               <p>There are currently no items in your Bag. Go to Marketplace to add items</p>
             ) : (
               bag.map((product, index) => (
-                <div key={index} className='flex justify-between rounded-xl p-2'>
+                <div key={index} className='flex justify-between rounded-xl p-2 gap-10'>
                   <ItemCard 
                     image={`http://localhost:8000/images/${product.image}`} 
                     category={product.category} 
@@ -40,9 +40,9 @@ const Cart = () => {
                   />
                   <div className='flex flex-col justify-between p-4'>
                     <div>
-                      <h1 className='text-2xl font-semibold text-stone-500'>{product.title}</h1>
-                      <p className='text-stone-500'>Quantity: 1</p>
-                      <h2 className='text-2xl mt-8 text-stone-400 font-semibold'>Total: {product.price}</h2>
+                      <h1 className='text-2xl font-semibold text-stone-700'>{product.title}</h1>
+                      <p className='text-stone-500 font-semibold'>Quantity: 1</p>
+                      <h2 className='text-2xl mt-8 text-stone-600 font-semibold'>Total: {product.price}</h2>
                     </div>
                     <button onClick={() => removeFromBag(product._id)}><DeleteItemBtn/></button>
                   </div>
@@ -50,7 +50,7 @@ const Cart = () => {
               ))
             )}
           </div>
-          <div className='rounded-3xl border border-stone-100 bg-stone-50 shadow-md w-1/4 p-6 flex flex-col justify-between h-96'>
+          <div className=' mt-8 rounded-3xl border border-stone-100 bg-white shadow-md w-1/4 p-6 flex flex-col justify-between h-96'>
             <div>
               <h1 className='text-3xl font-heading font-bold'>Order Summary</h1>
               <hr className='mt-4 mb-6'/>
