@@ -33,14 +33,16 @@ const Navbar = () => {
                 <PeopleTwoToneIcon className="text-blue-800"/>
               </a>
             </li>
-            <h1>
-              <Link to="/me">
-                <PersonTwoToneIcon className="text-blue-800"/>
-              </Link>
-            </h1>
+           
             <Link to="/bag">
               <ShoppingCartTwoToneIcon className="text-blue-800"/>
             </Link>
+
+            <h1>
+              {token ? <Link to="/me">
+                <PersonTwoToneIcon className="text-blue-800"/>
+              </Link> : <p className="hidden">.</p>}
+            </h1>
           </ul>
         </div>
         <div className="flex gap-8 justify-center items-center ml-10">
