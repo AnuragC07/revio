@@ -103,7 +103,7 @@ router.post(
 
       console.log("Files:", files);
 
-      if (!title || !category || !description || !price || !files.coverFile || !files.digitalFile) {
+      if (!title || !category || !description || !files.coverFile || !files.digitalFile) {
         return res.status(400).json({ message: "Please enter all fields and upload both cover and digital files" });
       }
 
@@ -208,16 +208,20 @@ router.get("/download/:id", async (req, res) => {
 
 // API to delete a specific product
 router.delete("/:id", jwtAuth, async (req, res) => {
+  console.log("Attempting to delete product with ID:", req.params.id);
   try {
     const { id } = req.params;
     const product = await Product.findByIdAndDelete(id);
     if (!product) {
       return res.status(404).json({ message: "Product not found" });
     }
+    console.log("Product deleted successfully:", product);
     return res.status(200).json({ message: "Product deleted successfully" });
   } catch (error) {
+    console.error("Error during deletion:", error.message);
     res.status(500).json({ message: error.message });
   }
 });
+
 
 module.exports = router;

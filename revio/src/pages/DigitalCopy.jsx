@@ -10,16 +10,17 @@ const DigitalCopy = () => {
   const [title, setTitle] = useState("");
   const [coverImagePreview, setCoverImagePreview] = useState(null);
   const [price, setPrice] = useState("");
-  // const [quantity, setQuantity] = useState("1");
   const [category, setCategory] = useState("Book");
   const [description, setDescription] = useState("");
-  // const [productType, setProductType] = useState("Digital Copy");
   const [coverFile, setCoverFile] = useState(null);
   const [digitalFile, setDigitalFile] = useState([]);
   const navigate = useNavigate();
 
   const handleCategory = (e) => {
     setCategory(e.target.value);
+    if (e.target.value === "Donation") {
+      setPrice(""); // Clear the price if the category is Donation
+    }
   };
 
   const handleDescription = (e) => {
@@ -48,10 +49,8 @@ const DigitalCopy = () => {
     const formData = new FormData();
     formData.append("title", title);
     formData.append("price", price);
-    // formData.append("quantity", quantity);
     formData.append("category", category);
     formData.append("description", description);
-    // formData.append("productType", productType);
     formData.append("coverFile", coverFile);
     formData.append("digitalFile", digitalFile);
 
@@ -116,8 +115,8 @@ const DigitalCopy = () => {
               onChange={(e) => setTitle(e.target.value)}
             />
             <div className="flex flex-row gap-5 mt-2">
-              <select
-                className="cursor-pointer outline-none text-xs font-semibold rounded-xl px-3 py-1 bg-stone-200"
+            <select
+                className="cursor-pointer border mt-4 border-stone-400 outline-none text-xs font-semibold rounded-xl px-3 py-1 bg-stone-100"
                 value={category}
                 onChange={handleCategory}
               >
@@ -146,14 +145,16 @@ const DigitalCopy = () => {
               className="w-full border border-stone-200 bg-stone-50 h-44 mt-5 rounded-xl font-sub text-lg font-medium text-stone-500 p-4 outline-none"
               onChange={handleDescription}
             ></textarea>
-            <div className="flex justify-between mt-10">
-              <input
-                type="text"
-                placeholder="Enter Price"
-                className="font-sub text-2xl h-fit p-3 bg-stone-50 font-bold text-blue-700 placeholder:font-normal border-b-2 border-stone-400 outline-none w-44"
-                onChange={(e) => setPrice(e.target.value)}
-              />
-            </div>
+            {category !== "Donation" && (
+              <div className="flex justify-between mt-10">
+                <input
+                  type="text"
+                  placeholder="Enter Price"
+                  className="font-sub text-2xl h-fit p-3 bg-stone-50 font-bold text-blue-700 placeholder:font-normal border-b-2 border-stone-400 outline-none w-44"
+                  onChange={(e) => setPrice(e.target.value)}
+                />
+              </div>
+            )}
           </div>
           <button className="mb-20 mt-10" onClick={handleListItem}>
             <ListItemBtn />

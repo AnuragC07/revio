@@ -4,6 +4,7 @@ import axios from "axios";
 import { Link, useParams } from "react-router-dom";
 import LocalMallRoundedIcon from "@mui/icons-material/LocalMallRounded";
 import DownloadIcon from "@mui/icons-material/Download";
+
 const Productpage = () => {
   const [item, setItem] = useState({});
   const { id } = useParams();
@@ -12,7 +13,12 @@ const Productpage = () => {
     axios
       .get(`http://localhost:8000/${id}`)
       .then((response) => {
-        setItem(response.data.data);
+        const product = response.data.data;
+        // Set price to 0 if it's not provided
+        if (product.price === undefined || product.price === null) {
+          product.price = 0;
+        }
+        setItem(product);
       })
       .catch((error) => {
         console.log(error);
@@ -39,7 +45,7 @@ const Productpage = () => {
       <Navbar />
       <div className="w-10/12 bg-white rounded-3xl mt-32 m-auto flex flex-row justify-between p-3 mb-4">
         <div>
-          <div className="flex ">
+          <div className="flex">
             <img
               src={getImageUrl(item.image)}
               alt=""
@@ -66,7 +72,7 @@ const Productpage = () => {
             </div>
           )}
         </div>
-        <div className=" rounded-3xl border border-stone-100 bg-stone-50 shadow-md h-fit w-1/2 ml-12 p-8 flex flex-col justify-between">
+        <div className="rounded-3xl border border-stone-100 bg-stone-50 shadow-md h-fit w-1/2 ml-12 p-8 flex flex-col justify-between">
           <div>
             <h1 className="text-3xl font-heading font-bold">{item.title}</h1>
             <div className="flex flex-row gap-5 mt-2">

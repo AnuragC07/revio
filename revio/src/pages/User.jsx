@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
-import userimg from "../assets/OIP.jpeg";
 import EditIcon from "@mui/icons-material/Edit";
 import ItemCard from "../components/ItemCard";
 import { Link, useNavigate } from "react-router-dom";
@@ -58,10 +57,7 @@ const User = () => {
           Authorization: `Bearer ${token}`,
         },
       };
-      const response = await axios.delete(
-        `http://localhost:8000/${selectedProduct._id}`,
-        config
-      );
+      await axios.delete(`http://localhost:8000/${selectedProduct._id}`, config);
       toast.success("Listed Product deleted successfully!");
       const updatedProducts = products.filter(
         (product) => product._id !== selectedProduct._id
@@ -70,8 +66,10 @@ const User = () => {
       setShowDeleteModal(false);
     } catch (error) {
       toast.error("Product deletion failed!");
+      console.error("Error during deletion:", error.response?.data || error.message);
     }
   };
+  
 
   const openDeleteModal = (product) => {
     setSelectedProduct(product);
@@ -139,8 +137,13 @@ const User = () => {
                   </button>
                 )}
                 <div className="relative">
-                  <ItemCard
-                    image={`http://localhost:8000/images/${product.image}`}
+                <ItemCard
+                    key={index}
+                    image={
+                      product.file
+                        ? `http://localhost:8000/files/coverFile/${product.image}`
+                        : `http://localhost:8000/images/${product.image}`
+                    }
                     category={product.category}
                     title={product.title}
                     description={product.description}
