@@ -1,37 +1,37 @@
 
 import bg from '../assets/Mask group2.jpg'
 import part2 from '../assets/Group 22_O.svg'
-import hero1 from "../assets/Rectangle 72.svg";
-import hero2 from "../assets/A paper airplane with a check mark.svg";
-import hero3 from "../assets/Group 14.svg";
-import hero4 from "../assets/Group 15.svg";
-import hero5 from "../assets/Project management workflow.svg";
-import hero6 from "../assets/Group 16.svg";
-import hero7 from "../assets/Group 17.svg";
-import hero8 from "../assets/Group 18.svg";
+// import hero1 from "../assets/Rectangle 72.svg";
+// import hero2 from "../assets/A paper airplane with a check mark.svg";
+// import hero3 from "../assets/Group 14.svg";
+// import hero4 from "../assets/Group 15.svg";
+// import hero5 from "../assets/Project management workflow.svg";
+// import hero6 from "../assets/Group 16.svg";
+// import hero7 from "../assets/Group 17.svg";
+// import hero8 from "../assets/Group 18.svg";
 
 import logo from "../assets/revio.svg";
-import DownBtn from "../components/DownBtn";
+// import DownBtn from "../components/DownBtn";
 import GetStartedBtn from "../components/GetStartedBtn";
 // import ItemCard from "../components/ItemCard";
 // import BrowseMoreBtn from "../components/BrowseMoreBtn";
 import Navbar from '../components/Navbar';
 
-import AOS from 'aos'
+// import AOS from 'aos'
 import 'aos/dist/aos.css';
-import { useEffect } from "react";
+// import { useEffect } from "react";
 import './styles.css';
 
 const Hero = () => {
 
-  useEffect(() => {
-    AOS.init({ duration: 2000});
-  }, []);
-  const handleExploreButtonClick = () => {
-    // Smooth scroll to the "Latest Articles" section
-    const latestArticlesSection = document.getElementById("hero2");
-    latestArticlesSection.scrollIntoView({ behavior: "smooth" });
-  };
+  // useEffect(() => {
+  //   AOS.init({ duration: 2000});
+  // }, []);
+  // const handleExploreButtonClick = () => {
+  //   // Smooth scroll to the "Latest Articles" section
+  //   const latestArticlesSection = document.getElementById("hero2");
+  //   latestArticlesSection.scrollIntoView({ behavior: "smooth" });
+  // };
   return (
     <>
     <Navbar />
