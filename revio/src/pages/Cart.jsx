@@ -1,11 +1,15 @@
 import { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
 import ItemCard from '../components/ItemCard';
+import { useNavigate } from "react-router-dom";
 import DeleteItemBtn from '../components/DeletItemBtn';
 import CheckOutBtn from '../components/CheckOutBtn';
+import GotoLoginBtn from '../components/GotoLoginBtn';
 
 const Cart = () => {
   const [bag, setBag] = useState([]);
+  const navigate = useNavigate();
+  const token = localStorage.getItem("jwtToken");
 
   useEffect(() => {
     const savedBag = JSON.parse(localStorage.getItem('bag')) || [];
@@ -16,6 +20,7 @@ const Cart = () => {
     const updatedBag = bag.filter(product => product._id !== productId);
     setBag(updatedBag);
     localStorage.setItem('bag', JSON.stringify(updatedBag));
+    navigate("/bag");
   };
 
   return (
@@ -30,13 +35,18 @@ const Cart = () => {
             ) : (
               bag.map((product, index) => (
                 <div key={index} className='flex justify-between rounded-xl p-2 gap-10'>
-                  <ItemCard 
-                    image={`http://localhost:8000/images/${product.image}`} 
-                    category={product.category} 
-                    title={product.title} 
-                    description={product.description} 
-                    price={product.price} 
-                    product={product} 
+                   <ItemCard
+                    key={index}
+                    image={
+                      product.file
+                        ? `http://localhost:8000/files/coverFile/${product.image}`
+                        : `http://localhost:8000/images/${product.image}`
+                    }
+                    category={product.category}
+                    title={product.title}
+                    description={product.description}
+                    price={product.price}
+                    product={product}
                   />
                   <div className='flex flex-col justify-between p-4'>
                     <div>
@@ -58,7 +68,7 @@ const Cart = () => {
               <h2 className='text-2xl font-heading font-bold text-blue-700 mt-10'>{bag.reduce((total, product) => total + product.price, 0)} ₹</h2>
             </div>
             <div>
-              <CheckOutBtn />
+              {token ? <CheckOutBtn/> : <GotoLoginBtn/>}
             </div>
           </div>
         </div>

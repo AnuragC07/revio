@@ -1,5 +1,6 @@
 
-import bg from "../assets/bg.jpg";
+import bg from '../assets/Mask group2.jpg'
+import part2 from '../assets/Group 22_O.svg'
 import hero1 from "../assets/Rectangle 72.svg";
 import hero2 from "../assets/A paper airplane with a check mark.svg";
 import hero3 from "../assets/Group 14.svg";
@@ -39,46 +40,39 @@ const Hero = () => {
         <img
           src={bg}
           alt=""
-          className="w-full bg-cover relative"
+          className="w-full bg-cover relative rounded-b-3xl border shadow-md"
         />
         <div>
 
         </div>
         <div className="absolute top-56 flex flex-col items-center justify-center">
-          <h1 className="text-slate-800 text-7xl font-bold text-center h-24 font-hero">
+          {/* <h1 className="text-slate-800 text-7xl font-bold text-center h-24 font-hero">
             Empower Learning.
           </h1>
           <p className="w- font-semibold text-lg font-sub text-slate-500">
             Buy, sell, or donate educational resources and make the most out of
             your academic connections.
-          </p>
+          </p> */}
 
 
-          <div className="mt-36 w-fit" onClick={handleExploreButtonClick}>
+          {/* <div className="mt-36 w-fit" onClick={handleExploreButtonClick}>
             <DownBtn />
-          </div>
-          <div className="relative mt-44">
+          </div> */}
+          {/* <div className="relative mt-44">
             <img src={hero1} data-aos="slide-up" data-aos-duration="700"/>
             <img src={hero2} className="absolute bottom-40 right-0" data-aos="zoom-in" data-aos-duration="700"/>
             <img src={hero3} className="absolute bottom-16 left-10" data-aos="zoom-in" data-aos-duration="700"/>
             <img src={hero4} className="absolute top-16 right-20" data-aos="zoom-in" data-aos-duration="700"/>
             <img src={hero5} className="absolute top-36 left-32" data-aos="zoom-in" data-aos-duration="700"/>
-          </div>
+          </div> */}
           
           
         </div>
         {/* <img src={hero2} alt="" className="absolute right-2 bottom-0 z-20 " /> */}
       </div>
 
-      <div className="flex flex-col justify-around p-8 w-full m-auto bg-stone-800 border-t-2 rounded-t-3xl">
-        <div>
-          <h2 className="font-heading mt-28 text-white text-3xl justify-center items-center flex">GET STARTED IN A FEW CLICKS</h2>
-        </div>
-        <div className="flex mt-10">
-          <img src={hero6} alt="" className="h-1/3 w-1/3"/>
-          <img src={hero7} alt="" className="h-1/3 w-1/3 mt-28"/>
-          <img src={hero8} alt="" className="h-1/3 w-1/3 mt-44"/>
-        </div>
+      <div className='flex justify-center items-center'>
+        <img src={part2} alt="" className="w-full h-full bg-cover"/>
       </div>
 
       {/* <div className="flex flex-col justify-center items-center scrollbar"> 

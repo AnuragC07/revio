@@ -54,7 +54,7 @@ const Market = () => {
           </div>
           <div
             id="content"
-            className="rounded-3xl p-5  w-full flex flex-row gap-7 flex-wrap bg-stone-100"
+            className="rounded-3xl p-5  w-full flex flex-row gap-7 flex-wrap bg-neutral-50"
           >
             {filteredProducts.length > 0 ? (
               filteredProducts

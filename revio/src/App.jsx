@@ -28,6 +28,7 @@ const App = () => {
       <Route path="/listproduct" element={<ListItem />} />
       <Route path="/listdigitalcopy" element={<DigitalCopy />} />
       <Route path="/me/edit" element={<MyinfoEdit />} />
+      {/* <Route path="/test" element={<Test />} /> */}
     </Routes>
     </>
   )

@@ -180,7 +180,8 @@ const User = () => {
         </div>
       )}
 
-      <div>
+      {/* coming soon ;)  */}
+      {/* <div>
         <h1 className="ml-40 font-heading font-bold text-2xl mt-32">
           Your Purchases
         </h1>
@@ -193,7 +194,7 @@ const User = () => {
             <ItemCard />
           </div>
         </div>
-      </div>
+      </div> */}
     </>
   );
 };
