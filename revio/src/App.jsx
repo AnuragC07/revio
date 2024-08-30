@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-
+import { Toaster } from "react-hot-toast";
 import Market from './pages/Market';
 import Home from './pages/Home';
 import Productpage from "./pages/Productpage";
@@ -15,6 +15,7 @@ import Checkout from "./pages/Checkout";
 const App = () => {
   return (
     <>
+    <Toaster position="top-center" reverseOrder={false} />
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
